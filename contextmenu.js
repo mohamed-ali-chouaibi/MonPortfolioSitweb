@@ -1,16 +1,13 @@
-// Enhanced Context Menu System
 let contextMenuTarget = null;
 let submenuTimeout = null;
 
 function initContextMenu() {
-    // Desktop right-click
     document.getElementById('desktop').addEventListener('contextmenu', (e) => {
         e.preventDefault();
         contextMenuTarget = null;
         showContextMenu(e.clientX, e.clientY, 'desktop');
     });
     
-    // Desktop icons right-click
     document.querySelectorAll('.desktop-icon').forEach(icon => {
         icon.addEventListener('contextmenu', (e) => {
             e.preventDefault();
@@ -20,7 +17,6 @@ function initContextMenu() {
         });
     });
     
-    // Taskbar right-click
     const taskbar = document.getElementById('taskbar');
     if (taskbar) {
         taskbar.addEventListener('contextmenu', (e) => {
@@ -30,7 +26,6 @@ function initContextMenu() {
         });
     }
     
-    // Hide on click outside
     document.addEventListener('click', hideAllContextMenus);
     document.addEventListener('contextmenu', () => hideSubmenu());
 }
@@ -241,6 +236,5 @@ function handleContextAction(action) {
     if (actions[action]) actions[action]();
 }
 
-// Make functions globally accessible
 window.showSubmenu = showSubmenu;
 window.hideAllContextMenus = hideAllContextMenus;

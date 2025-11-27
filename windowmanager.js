@@ -1,11 +1,7 @@
-// Enhanced Window Management System
-
-// Aero Snap functionality
 let snapPreview = null;
 let isDraggingWindow = false;
 let draggedWindow = null;
 
-// Aero Shake functionality
 let shakeStartTime = 0;
 let shakeCount = 0;
 let shakeTimer = null;
@@ -13,7 +9,6 @@ let shakeTimer = null;
 function initWindowManagement() {
     snapPreview = document.getElementById('snap-preview');
 
-    // Track mouse movement for Aero Snap
     document.addEventListener('mousemove', handleAeroSnap);
     document.addEventListener('mouseup', applyAeroSnap);
 }
@@ -23,24 +18,19 @@ function handleAeroSnap(e) {
 
     const threshold = 10;
     const screenWidth = window.innerWidth;
-    const screenHeight = window.innerHeight - 40; // Minus taskbar
-
-    // Left edge - snap to left half
+    const screenHeight = window.innerHeight - 40;
     if (e.clientX < threshold) {
         showSnapPreview(0, 0, screenWidth / 2, screenHeight);
         draggedWindow.snapPosition = 'left';
     }
-    // Right edge - snap to right half
     else if (e.clientX > screenWidth - threshold) {
         showSnapPreview(screenWidth / 2, 0, screenWidth / 2, screenHeight);
         draggedWindow.snapPosition = 'right';
     }
-    // Top edge - maximize
     else if (e.clientY < threshold) {
         showSnapPreview(0, 0, screenWidth, screenHeight);
         draggedWindow.snapPosition = 'maximize';
     }
-    // No snap
     else {
         hideSnapPreview();
         draggedWindow.snapPosition = null;
@@ -100,7 +90,6 @@ function applyAeroSnap() {
     draggedWindow = null;
 }
 
-// Enhanced minimize with animation
 function enhancedMinimize(windowEl, appName) {
     windowEl.classList.add('minimizing');
 
@@ -120,7 +109,6 @@ function enhancedMinimize(windowEl, appName) {
     }, 300);
 }
 
-// Enhanced restore with animation
 function enhancedRestore(windowEl, appName) {
     windowEl.classList.add('restoring');
     windowEl.classList.remove('minimized');
@@ -135,7 +123,6 @@ function enhancedRestore(windowEl, appName) {
     }
 }
 
-// Aero Shake - shake window to minimize all others
 function initAeroShake(windowEl, titlebar) {
     let shakeStartX = 0;
     let shakeStartY = 0;
@@ -156,10 +143,8 @@ function initAeroShake(windowEl, titlebar) {
             if (deltaX > 20 || deltaY > 20) {
                 shakeMovements.push({ x: e.clientX, y: e.clientY, time: Date.now() });
 
-                // Keep only recent movements
                 shakeMovements = shakeMovements.filter(m => Date.now() - m.time < 500);
 
-                // Detect shake pattern (rapid back and forth movement)
                 if (shakeMovements.length > 6) {
                     const isShaking = detectShakePattern(shakeMovements);
                     if (isShaking) {
@@ -216,7 +201,6 @@ function performAeroShake(activeWindow) {
     }
 }
 
-// Update focus states
 function updateWindowFocus(focusedWindow) {
     document.querySelectorAll('.window').forEach(win => {
         if (win === focusedWindow) {
@@ -229,7 +213,6 @@ function updateWindowFocus(focusedWindow) {
     });
 }
 
-// Enhanced draggable with Aero Snap
 function makeWindowDraggable(windowEl) {
     const titlebar = windowEl.querySelector('.window-titlebar');
     let isDragging = false;
@@ -243,12 +226,10 @@ function makeWindowDraggable(windowEl) {
         wasMaximized = windowEl.classList.contains('maximized');
 
         if (wasMaximized) {
-            // Calculate mouse position relative to window width
             const rect = windowEl.getBoundingClientRect();
             maxRestoreOffset = e.clientX / rect.width;
             windowEl.classList.remove('maximized');
 
-            // Set new width and position
             const newWidth = 800;
             windowEl.style.width = newWidth + 'px';
             windowEl.style.height = '600px';
@@ -263,7 +244,6 @@ function makeWindowDraggable(windowEl) {
         initialY = e.clientY - windowEl.offsetTop;
         windowEl.style.zIndex = ++zIndexCounter;
 
-        // Start Aero Shake detection
         shakeStartTime = Date.now();
     });
 
@@ -280,7 +260,6 @@ function makeWindowDraggable(windowEl) {
         isDragging = false;
     });
 
-    // Double-click to maximize/restore
     titlebar.addEventListener('dblclick', () => {
         if (windowEl.classList.contains('maximized')) {
             windowEl.classList.remove('maximized');
@@ -289,11 +268,9 @@ function makeWindowDraggable(windowEl) {
         }
     });
 
-    // Initialize Aero Shake
     initAeroShake(windowEl, titlebar);
 }
 
-// Add glow animation for minimized taskbar apps
 const style = document.createElement('style');
 style.textContent = `
     @keyframes minimized-glow {
@@ -307,14 +284,12 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// Initialize on load
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initWindowManagement);
 } else {
     initWindowManagement();
 }
 
-// Make functions globally accessible
 window.enhancedMinimize = enhancedMinimize;
 window.enhancedRestore = enhancedRestore;
 window.makeWindowDraggable = makeWindowDraggable;

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windows 7 Portfolio OS</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Boot Loader -->
+    <div id="boot-screen">
+        <div class="boot-content">
+            <div class="boot-logo">
+                <div class="boot-orb">
+                    <div class="orb-glow"></div>
+                    <div class="orb-inner"></div>
+                </div>
+            </div>
+            <div class="boot-text">Windows 7 Portfolio</div>
+            <div class="boot-bar">
+                <div class="boot-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Screen -->
+    <div id="login-screen" class="hidden">
+        <div class="login-background"></div>
+        <div class="login-time">
+            <div class="login-time-large" id="login-clock-time">12:00</div>
+            <div class="login-date" id="login-clock-date">Monday, January 1</div>
+        </div>
+        <div class="login-content">
+            <div class="user-profile">
+                <div class="user-avatar-large">
+                    <div class="avatar-circle" id="login-avatar"></div>
+                </div>
+                <div class="user-name-large">John Doe</div>
+            </div>
+            <div class="password-container">
+                <input type="password" id="password-input" placeholder="Enter password" class="password-input">
+                <button id="login-button" class="login-arrow">→</button>
+            </div>
+            <div class="login-hint">Hint: Press Enter or type "portfolio"</div>
+            <div class="login-options">
+                <button class="login-option-btn" onclick="document.getElementById('password-input').value='portfolio'; document.getElementById('login-button').click();">
+                    <span class="login-icon" data-icon="unlock"></span>
+                    <span>Quick Login</span>
+                </button>
+            </div>
+        </div>
+        <div class="login-footer">
+            <button class="login-footer-btn" onclick="showSystemToast('💡 Info', 'This is a demo portfolio. Click Restart to reload.')">
+                <span class="footer-icon" data-icon="restart"></span>
+                <span>Restart</span>
+            </button>
+            <button class="login-footer-btn" onclick="showSystemToast('💡 Info', 'Thanks for visiting! Refresh to restart the experience.')">
+                <span class="footer-icon" data-icon="power"></span>
+                <span>Shut down</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Screen Saver -->
+    <div id="screensaver" class="hidden">
+        <div class="screensaver-content">
+            <div class="floating-text">💼 Web Developer</div>
+            <div class="floating-text">🎨 UI/UX Designer</div>
+            <div class="floating-text">⚡ Problem Solver</div>
+            <div class="floating-text">🚀 Creative Thinker</div>
+        </div>
+        <div class="screensaver-hint">Move mouse or press any key to exit</div>
+    </div>
+    <!-- Desktop -->
+    <div id="desktop">
+        <!-- Desktop Icons -->
+        <div class="desktop-icon" data-app="myportfolio" data-icon="computer">
+            <div class="icon-container"></div>
+            <span>My Portfolio</span>
+        </div>
+
+        <div class="desktop-icon" data-app="aboutme" data-icon="notepad">
+            <div class="icon-container"></div>
+            <span>About Me.txt</span>
+        </div>
+
+        <div class="desktop-icon" data-app="projects" data-icon="browser">
+            <div class="icon-container"></div>
+            <span>Projects Explorer</span>
+        </div>
+
+        <div class="desktop-icon" data-app="resume" data-icon="pdf">
+            <div class="icon-container"></div>
+            <span>Resume.pdf</span>
+        </div>
+
+        <div class="desktop-icon" data-app="contact" data-icon="mail">
+            <div class="icon-container"></div>
+            <span>Contact Me</span>
+        </div>
+
+        <div class="desktop-icon" data-app="paint" data-icon="paint">
+            <div class="icon-container"></div>
+            <span>Paint</span>
+        </div>
+
+        <div class="desktop-icon" data-app="pictures" data-icon="photoViewer">
+            <div class="icon-container"></div>
+            <span>Photo Viewer</span>
+        </div>
+
+        <div class="desktop-icon" data-app="codeeditor" data-icon="code">
+            <div class="icon-container"></div>
+            <span>Code Editor</span>
+        </div>
+
+        <div class="desktop-icon" data-app="mediaplayer" data-icon="mediaPlayer">
+            <div class="icon-container"></div>
+            <span>Media Player</span>
+        </div>
+
+        <div class="desktop-icon" data-app="game" data-icon="game">
+            <div class="icon-container"></div>
+            <span>Portfolio Game</span>
+        </div>
+
+        <div class="desktop-icon" data-app="recycle" data-icon="recycleBin">
+            <div class="icon-container"></div>
+            <span>Recycle Bin</span>
+        </div>
+    </div>
+
+    <!-- Taskbar -->
+    <div id="taskbar">
+        <button id="start-button">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect fill='%234A90E2' width='10' height='10' x='2' y='2'/%3E%3Crect fill='%2395C8FF' width='10' height='10' x='12' y='2'/%3E%3Crect fill='%23FFD700' width='10' height='10' x='2' y='12'/%3E%3Crect fill='%2395E895' width='10' height='10' x='12' y='12'/%3E%3C/svg%3E" alt="Start">
+        </button>
+        <div id="taskbar-apps"></div>
+        <div id="system-tray">
+            <div class="tray-icon" title="Volume" data-icon="volume"></div>
+            <div class="tray-icon" title="Network" data-icon="network"></div>
+            <div class="tray-icon notification-icon" title="Notifications" data-icon="notification"></div>
+            <div class="tray-separator"></div>
+            <span id="clock">12:00 PM<br><span style="font-size: 10px;">1/1/2024</span></span>
+        </div>
+    </div>
+
+    <!-- Context Menu -->
+    <div id="context-menu" class="hidden"></div>
+    
+    <!-- Submenu Container -->
+    <div id="context-submenu" class="hidden"></div>
+
+    <!-- Taskbar Preview -->
+    <div id="taskbar-preview" class="hidden">
+        <div class="preview-title">Window Preview</div>
+        <div class="preview-content">
+            <div class="preview-thumbnail"></div>
+        </div>
+        <div class="preview-close">×</div>
+    </div>
+
+    <!-- Notification Popup -->
+    <div id="notification-popup" class="hidden">
+        <div class="notification-header">
+            <span>💼 Portfolio Notification</span>
+            <button class="notification-close">×</button>
+        </div>
+        <div class="notification-body">
+            <p>Welcome to my interactive portfolio! Feel free to explore all the applications.</p>
+        </div>
+    </div>
+
+    <!-- Start Menu -->
+    <div id="start-menu" class="hidden">
+        <div class="start-menu-content">
+            <div class="start-menu-left">
+                <div class="start-menu-user">
+                    <div class="user-avatar" data-icon="user"></div>
+                    <div class="user-name">John Doe</div>
+                </div>
+                <div class="start-menu-separator"></div>
+                <div class="start-menu-programs">
+                    <div class="start-menu-item" data-app="myportfolio">
+                        <span class="item-icon" data-icon="briefcase"></span>
+                        <span>My Portfolio</span>
+                    </div>
+                    <div class="start-menu-item" data-app="aboutme">
+                        <span class="item-icon" data-icon="notepad"></span>
+                        <span>About Me</span>
+                    </div>
+                    <div class="start-menu-item" data-app="projects">
+                        <span class="item-icon" data-icon="explorer"></span>
+                        <span>Projects Explorer</span>
+                    </div>
+                    <div class="start-menu-item" data-app="resume">
+                        <span class="item-icon" data-icon="document"></span>
+                        <span>Resume</span>
+                    </div>
+                    <div class="start-menu-item" data-app="contact">
+                        <span class="item-icon" data-icon="mail"></span>
+                        <span>Contact Me</span>
+                    </div>
+                    <div class="start-menu-item" data-app="paint">
+                        <span class="item-icon" data-icon="palette"></span>
+                        <span>Paint</span>
+                    </div>
+                    <div class="start-menu-item" data-app="mediaplayer">
+                        <span class="item-icon" data-icon="mediaplayer"></span>
+                        <span>Media Player</span>
+                    </div>
+                </div>
+                <div class="start-menu-separator"></div>
+                <div class="start-menu-footer">
+                    <div class="start-menu-item all-programs">
+                        <span>All Programs</span>
+                        <span class="arrow">▶</span>
+                    </div>
+                    <div class="start-menu-search">
+                        <input type="text" placeholder="Search programs and files">
+                        <span class="search-icon" data-icon="search"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="start-menu-right">
+                <div class="start-menu-item" data-app="documents">
+                    <span class="item-icon" data-icon="folder"></span>
+                    <span>Documents</span>
+                </div>
+                <div class="start-menu-item" data-app="pictures">
+                    <span class="item-icon" data-icon="image"></span>
+                    <span>Pictures</span>
+                </div>
+                <div class="start-menu-item" data-app="music">
+                    <span class="item-icon" data-icon="music"></span>
+                    <span>Music</span>
+                </div>
+                <div class="start-menu-item" data-app="myportfolio">
+                    <span class="item-icon" data-icon="computer"></span>
+                    <span>Computer</span>
+                </div>
+                <div class="start-menu-item" data-app="settings">
+                    <span class="item-icon" data-icon="settings"></span>
+                    <span>Control Panel</span>
+                </div>
+                <div class="start-menu-item" data-app="help">
+                    <span class="item-icon" data-icon="help"></span>
+                    <span>Help and Support</span>
+                </div>
+            </div>
+        </div>
+        <div class="start-menu-bottom">
+            <button class="shutdown-button">
+                <span>Shut down</span>
+                <span class="arrow">▶</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Windows Container -->
+    <div id="windows-container"></div>
+    
+    <!-- Aero Snap Preview -->
+    <div id="snap-preview" class="snap-preview"></div>
+
+    <!-- Error Dialog -->
+    <div id="error-dialog" class="hidden">
+        <div class="error-window">
+            <div class="error-titlebar">
+                <span>⚠️ Portfolio OS</span>
+                <button class="error-close">×</button>
+            </div>
+            <div class="error-content">
+                <div class="error-icon">⚠️</div>
+                <div class="error-message">
+                    <div class="error-title">Page Not Found</div>
+                    <div class="error-text">The requested page could not be found. Please check the address and try again.</div>
+                </div>
+            </div>
+            <div class="error-buttons">
+                <button class="error-button">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Theme Switcher (Hidden Control Panel Feature) -->
+    <div id="theme-switcher" class="hidden">
+        <div class="theme-panel">
+            <div class="theme-header">
+                <span>🎨 Display Settings</span>
+                <button class="theme-close">×</button>
+            </div>
+            <div class="theme-body">
+                <h3>Choose Theme</h3>
+                <div class="theme-options">
+                    <div class="theme-option" data-theme="default">
+                        <div class="theme-preview" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
+                        <span>Default Blue</span>
+                    </div>
+                    <div class="theme-option" data-theme="green">
+                        <div class="theme-preview" style="background: linear-gradient(135deg, #56ab2f 0%, #a8e063 100%);"></div>
+                        <span>Nature Green</span>
+                    </div>
+                    <div class="theme-option" data-theme="purple">
+                        <div class="theme-preview" style="background: linear-gradient(135deg, #8e2de2 0%, #4a00e0 100%);"></div>
+                        <span>Royal Purple</span>
+                    </div>
+                    <div class="theme-option" data-theme="orange">
+                        <div class="theme-preview" style="background: linear-gradient(135deg, #f46b45 0%, #eea849 100%);"></div>
+                        <span>Sunset Orange</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="icons.js"></script>
+    <script src="script.js"></script>
+    <script src="contextmenu.js"></script>
+    <script src="windowmanager.js"></script>
+</body>
+</html>

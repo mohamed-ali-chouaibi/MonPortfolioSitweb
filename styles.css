@@ -11,7 +11,6 @@ body {
     user-select: none;
 }
 
-/* Desktop */
 #desktop {
     width: 100vw;
     height: calc(100vh - 40px);
@@ -27,7 +26,6 @@ body {
     align-content: start;
 }
 
-/* Desktop Icons */
 .desktop-icon {
     width: 80px;
     display: flex;
@@ -71,7 +69,6 @@ body {
     max-width: 80px;
 }
 
-/* Taskbar */
 #taskbar {
     position: fixed;
     bottom: 0;
@@ -213,7 +210,6 @@ body {
     background: rgba(255, 255, 255, 0.1);
 }
 
-/* Start Menu */
 #start-menu {
     position: fixed;
     bottom: 40px;
@@ -386,7 +382,6 @@ body {
     font-size: 10px;
 }
 
-/* Windows */
 .window {
     position: absolute;
     min-width: 400px;
@@ -460,7 +455,6 @@ body {
     }
 }
 
-/* Aero Snap Preview */
 .snap-preview {
     position: fixed;
     border: 3px solid rgba(74, 144, 226, 0.8);
@@ -543,7 +537,6 @@ body {
     background: rgba(100, 200, 100, 0.3);
 }
 
-/* Window control tooltips */
 .window-control::after {
     content: attr(data-tooltip);
     position: absolute;
@@ -620,7 +613,6 @@ body {
 }
 
 
-/* Scrollbar styling for Windows 7 look */
 ::-webkit-scrollbar {
     width: 16px;
     height: 16px;
@@ -647,7 +639,6 @@ body {
     height: 16px;
 }
 
-/* Window resize handle */
 .window::after {
     content: '';
     position: absolute;
@@ -659,13 +650,11 @@ body {
     cursor: nwse-resize;
 }
 
-/* Selection styling */
 ::selection {
     background: rgba(100, 150, 255, 0.4);
     color: inherit;
 }
 
-/* Button hover effects */
 button {
     transition: all 0.2s;
 }
@@ -674,39 +663,32 @@ button:active {
     transform: translateY(1px);
 }
 
-/* Input focus styling */
 input:focus,
 textarea:focus {
     outline: 2px solid #4A90E2;
     outline-offset: -2px;
 }
 
-/* Taskbar hover glow effect */
 #taskbar {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Window shadow when focused */
 .window:hover {
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
 }
 
-/* Desktop icon text selection disabled */
 .desktop-icon span {
     pointer-events: none;
 }
 
-/* Smooth transitions */
 * {
     transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
-/* Loading cursor */
 body.loading {
     cursor: wait;
 }
 
-/* Context menu prevention */
 body {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -715,7 +697,6 @@ body {
     user-select: none;
 }
 
-/* Allow text selection in windows */
 .window-content {
     -webkit-user-select: text;
     -moz-user-select: text;
@@ -723,7 +704,6 @@ body {
     user-select: text;
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
     .window {
         width: 100% !important;
@@ -756,8 +736,6 @@ body {
     }
 }
 
-/*
- Context Menu */
 #context-menu {
     position: fixed;
     background: rgba(240, 240, 240, 0.98);
@@ -788,7 +766,6 @@ body {
     margin: 4px 8px;
 }
 
-/* Taskbar Preview */
 #taskbar-preview {
     position: fixed;
     bottom: 50px;
@@ -855,7 +832,6 @@ body {
     background: #E74C3C;
 }
 
-/* Notification Popup */
 #notification-popup {
     position: fixed;
     bottom: 50px;
@@ -915,13 +891,11 @@ body {
     margin: 0;
 }
 
-/* Start button glow effect */
 #start-button:hover img {
     filter: brightness(1.2) drop-shadow(0 0 8px rgba(74, 144, 226, 0.6));
 }
 
 
-/* Cursor styles */
 body {
     cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><path fill="white" stroke="black" d="M0,0 L0,12 L4,9 L6,13 L8,12 L6,8 L10,8 Z"/></svg>'), auto;
 }
@@ -938,7 +912,6 @@ input, textarea {
     cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><line x1="8" y1="0" x2="8" y2="16" stroke="black" stroke-width="2"/><line x1="4" y1="2" x2="12" y2="2" stroke="black" stroke-width="2"/><line x1="4" y1="14" x2="12" y2="14" stroke="black" stroke-width="2"/></svg>'), text;
 }
 
-/* Taskbar app flash animation */
 @keyframes taskbar-flash {
     0%, 100% { background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05)); }
     50% { background: linear-gradient(to bottom, rgba(255, 165, 0, 0.4), rgba(255, 165, 0, 0.2)); }
@@ -948,7 +921,6 @@ input, textarea {
     animation: taskbar-flash 1s infinite;
 }
 
-/* Window shake animation for errors */
 @keyframes window-shake {
     0%, 100% { transform: translateX(0); }
     25% { transform: translateX(-5px); }
@@ -959,7 +931,6 @@ input, textarea {
     animation: window-shake 0.3s;
 }
 
-/* Desktop icon selection box */
 .selection-box {
     position: absolute;
     border: 1px dashed rgba(255, 255, 255, 0.8);
@@ -969,7 +940,6 @@ input, textarea {
 }
 
 
-/* Boot Screen */
 #boot-screen {
     position: fixed;
     top: 0;
@@ -1102,7 +1072,6 @@ input, textarea {
     }
 }
 
-/* Login Screen */
 #login-screen {
     position: fixed;
     top: 0;
@@ -1298,7 +1267,6 @@ input, textarea {
     filter: drop-shadow(0 1px 2px rgba(0,0,0,0.3));
 }
 
-/* Screen Saver */
 #screensaver {
     position: fixed;
     top: 0;
@@ -1382,7 +1350,6 @@ input, textarea {
     50% { opacity: 0.8; }
 }
 
-/* Error Dialog */
 #error-dialog {
     position: fixed;
     top: 0;
@@ -1496,7 +1463,6 @@ input, textarea {
     background: linear-gradient(to bottom, #e8e8e8, #d8d8d8);
 }
 
-/* Theme Switcher */
 #theme-switcher {
     position: fixed;
     top: 0;
@@ -1600,7 +1566,6 @@ input, textarea {
     font-weight: 600;
 }
 
-/* System Notification Toast */
 .system-toast {
     position: fixed;
     top: 60px;
@@ -1646,14 +1611,12 @@ input, textarea {
 }
 
 
-/* Shake animation for wrong password */
 @keyframes shake {
     0%, 100% { transform: translateX(0); }
     10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
     20%, 40%, 60%, 80% { transform: translateX(10px); }
 }
 
-/* Fade animations */
 @keyframes fade-in {
     from { opacity: 0; }
     to { opacity: 1; }
@@ -1664,7 +1627,6 @@ input, textarea {
     to { opacity: 0; }
 }
 
-/* Desktop fade in */
 #desktop {
     animation: fade-in 0.8s ease-out;
 }
@@ -1674,7 +1636,6 @@ input, textarea {
 }
 
 
-/* Login Options */
 .login-options {
     margin-top: 20px;
     display: flex;
@@ -1723,7 +1684,6 @@ input, textarea {
     filter: drop-shadow(0 1px 2px rgba(0,0,0,0.3));
 }
 
-/* Login screen time display */
 .login-time {
     position: absolute;
     top: 30px;
@@ -1747,7 +1707,6 @@ input, textarea {
 }
 
 
-/* Enhanced Context Menu */
 #context-submenu {
     position: fixed;
     background: rgba(240, 240, 240, 0.98);
@@ -1788,7 +1747,6 @@ input, textarea {
 }
 
 
-/* Code Editor Styles */
 .code-editor-container {
     display: flex;
     height: 100%;
@@ -1839,7 +1797,6 @@ input, textarea {
     background: #37373D;
 }
 
-/* Folder Styles */
 .folder-item {
     margin: 2px 0;
 }
@@ -1888,7 +1845,6 @@ input, textarea {
     transform: rotate(-90deg);
 }
 
-/* Nested file indentation */
 .folder-content .file-item {
     padding-left: 45px;
 }
@@ -2030,7 +1986,6 @@ input, textarea {
     white-space: pre;
 }
 
-/* Syntax Highlighting Colors */
 .keyword {
     color: #569CD6;
     font-weight: 500;
@@ -2077,7 +2032,6 @@ input, textarea {
     color: #9CDCFE;
 }
 
-/* Scrollbar for code editor */
 .code-editor-wrapper ::-webkit-scrollbar {
     width: 10px;
     height: 10px;
@@ -2097,7 +2051,6 @@ input, textarea {
 }
 
 
-/* Menu Bar Dropdown Styles */
 .menu-item.active {
     background: rgba(100, 150, 255, 0.4);
     box-shadow: inset 0 0 0 1px rgba(100, 150, 255, 0.5);
@@ -2161,7 +2114,6 @@ input, textarea {
     margin: 3px 0;
 }
 
-/* Custom Dialog Styles */
 .custom-dialog {
     position: fixed;
     top: 0;

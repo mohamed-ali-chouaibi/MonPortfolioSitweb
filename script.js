@@ -1,11 +1,9 @@
-// State management
 let zIndexCounter = 100;
 let openWindows = {};
 let screensaverTimeout;
 let lastActivity = Date.now();
 let revealedCards = 0;
 
-// Portfolio Facts for Game
 const portfolioFacts = [
     "💻 Built 50+ websites",
     "🎨 Expert in Figma",
@@ -21,27 +19,22 @@ const portfolioFacts = [
     "✨ Creative problem solver"
 ];
 
-// Initialize
 document.addEventListener('DOMContentLoaded', () => {
     initBootSequence();
 });
 
-// Boot Sequence
 function initBootSequence() {
-    // Phase 1: Boot Screen (3 seconds)
     setTimeout(() => {
         const bootScreen = document.getElementById('boot-screen');
         bootScreen.classList.add('fade-out');
 
         setTimeout(() => {
             bootScreen.style.display = 'none';
-            // Phase 2: Show Login Screen
             showLoginScreen();
         }, 500);
     }, 3000);
 }
 
-// Login Screen
 function showLoginScreen() {
     const loginScreen = document.getElementById('login-screen');
     loginScreen.classList.remove('hidden');
@@ -49,7 +42,6 @@ function showLoginScreen() {
     const passwordInput = document.getElementById('password-input');
     const loginButton = document.getElementById('login-button');
 
-    // Initialize login screen icons
     document.querySelectorAll('.login-icon[data-icon], .footer-icon[data-icon]').forEach(iconEl => {
         const iconName = iconEl.getAttribute('data-icon');
         const size = iconEl.classList.contains('footer-icon') ? 24 : 20;
@@ -60,7 +52,6 @@ function showLoginScreen() {
         }
     });
 
-    // Update login screen clock
     function updateLoginClock() {
         const now = new Date();
         const hours = now.getHours().toString().padStart(2, '0');
@@ -78,27 +69,22 @@ function showLoginScreen() {
     updateLoginClock();
     const loginClockInterval = setInterval(updateLoginClock, 1000);
 
-    // Focus on password input
     setTimeout(() => {
         passwordInput.focus();
     }, 500);
 
-    // Handle login
     function handleLogin() {
         const password = passwordInput.value;
 
-        // Accept any password or empty (just press Enter)
         if (password === '' || password.toLowerCase() === 'portfolio' || password) {
             clearInterval(loginClockInterval);
             loginScreen.classList.add('fade-out');
 
             setTimeout(() => {
                 loginScreen.style.display = 'none';
-                // Phase 3: Initialize Desktop
                 initDesktop();
             }, 500);
         } else {
-            // Shake animation for wrong password
             passwordInput.style.animation = 'shake 0.5s';
             setTimeout(() => {
                 passwordInput.style.animation = '';
@@ -106,10 +92,8 @@ function showLoginScreen() {
         }
     }
 
-    // Login on button click
     loginButton.addEventListener('click', handleLogin);
 
-    // Login on Enter key
     passwordInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
             handleLogin();
@@ -117,7 +101,6 @@ function showLoginScreen() {
     });
 }
 
-// Initialize Desktop
 function initDesktop() {
     initClock();
     initStartMenu();
@@ -134,14 +117,12 @@ function initDesktop() {
     initEasterEggs();
     optimizePerformance();
 
-    // Show welcome notification after desktop loads
     setTimeout(() => {
         showWelcomeNotification();
         startRandomNotifications();
     }, 2000);
 }
 
-// Clock
 function initClock() {
     function updateClock() {
         const now = new Date();
@@ -160,12 +141,10 @@ function initClock() {
     setInterval(updateClock, 1000);
 }
 
-// Start Menu
 function initStartMenu() {
     const startButton = document.getElementById('start-button');
     const startMenu = document.getElementById('start-menu');
 
-    // Initialize Start Menu icons
     document.querySelectorAll('.item-icon[data-icon], .user-avatar[data-icon], .search-icon[data-icon]').forEach(iconEl => {
         const iconName = iconEl.getAttribute('data-icon');
         const size = iconEl.classList.contains('user-avatar') ? 32 : 16;
@@ -199,7 +178,6 @@ function initStartMenu() {
         });
     });
 
-    // Search functionality
     const searchInput = document.querySelector('.start-menu-search input');
     if (searchInput) {
         searchInput.addEventListener('input', (e) => {
@@ -212,10 +190,8 @@ function initStartMenu() {
     }
 }
 
-// Desktop Icons
 function initDesktopIcons() {
     document.querySelectorAll('.desktop-icon').forEach(icon => {
-        // Load SVG icon
         const iconName = icon.getAttribute('data-icon');
         const iconContainer = icon.querySelector('.icon-container');
         if (iconContainer && WindowsIcons && WindowsIcons[iconName]) {
@@ -242,7 +218,6 @@ function initDesktopClick() {
 }
 
 
-// Application Launcher
 function openApplication(appName) {
     if (openWindows[appName]) {
         focusWindow(openWindows[appName]);
@@ -337,7 +312,6 @@ function openApplication(appName) {
     createTaskbarApp(appName, app.title, app.icon);
 }
 
-// Window Creation
 function createWindow(appName, title, icon, content) {
     const windowEl = document.createElement('div');
     windowEl.className = 'window';
@@ -380,30 +354,24 @@ function createWindow(appName, title, icon, content) {
 
     document.getElementById('windows-container').appendChild(windowEl);
 
-    // Window controls
     windowEl.querySelector('.minimize').addEventListener('click', () => minimizeWindow(windowEl, appName));
     windowEl.querySelector('.maximize').addEventListener('click', () => toggleMaximize(windowEl));
     windowEl.querySelector('.close').addEventListener('click', () => closeWindow(windowEl, appName));
 
-    // Dragging with Aero Snap
     if (typeof makeWindowDraggable === 'function') {
         makeWindowDraggable(windowEl);
     } else {
         makeDraggable(windowEl);
     }
 
-    // Resizing
     makeResizable(windowEl);
 
-    // Focus on click
     windowEl.addEventListener('mousedown', () => focusWindow(windowEl));
 
-    // Menu bar functionality
     if (hasMenuBar) {
         initMenuBar(windowEl, appName);
     }
 
-    // Set initial focus state
     windowEl.classList.add('focused');
 
     return windowEl;
@@ -441,7 +409,6 @@ function makeDraggable(windowEl) {
 function focusWindow(windowEl) {
     windowEl.style.zIndex = ++zIndexCounter;
 
-    // Update focus states
     if (typeof updateWindowFocus === 'function') {
         updateWindowFocus(windowEl);
     }
@@ -455,7 +422,6 @@ function focusWindow(windowEl) {
 }
 
 function minimizeWindow(windowEl, appName) {
-    // Use enhanced minimize if available
     if (typeof enhancedMinimize === 'function') {
         enhancedMinimize(windowEl, appName);
     } else {
@@ -477,7 +443,6 @@ function closeWindow(windowEl, appName) {
 }
 
 
-// Taskbar
 function createTaskbarApp(appName, title, icon) {
     const taskbarApp = document.createElement('div');
     taskbarApp.className = 'taskbar-app active';
@@ -490,7 +455,6 @@ function createTaskbarApp(appName, title, icon) {
     taskbarApp.addEventListener('click', () => {
         const windowEl = openWindows[appName];
         if (windowEl.classList.contains('minimized')) {
-            // Use enhanced restore if available
             if (typeof enhancedRestore === 'function') {
                 enhancedRestore(windowEl, appName);
             } else {
@@ -504,7 +468,6 @@ function createTaskbarApp(appName, title, icon) {
         }
     });
 
-    // Right-click context menu
     taskbarApp.addEventListener('contextmenu', (e) => {
         e.preventDefault();
         showTaskbarContextMenu(e.clientX, e.clientY, appName);
@@ -523,19 +486,16 @@ function showTaskbarContextMenu(x, y, appName) {
     contextMenu.classList.remove('hidden');
 }
 
-// Context Menu
 let contextMenuTarget = null;
 
 function initContextMenu() {
     const contextMenu = document.getElementById('context-menu');
 
-    // Desktop right-click
     document.getElementById('desktop').addEventListener('contextmenu', (e) => {
         e.preventDefault();
         showContextMenu(e.clientX, e.clientY, 'desktop');
     });
 
-    // Desktop icons right-click
     document.querySelectorAll('.desktop-icon').forEach(icon => {
         icon.addEventListener('contextmenu', (e) => {
             e.preventDefault();
@@ -545,7 +505,6 @@ function initContextMenu() {
         });
     });
 
-    // Context menu actions
     document.querySelectorAll('.context-menu-item').forEach(item => {
         item.addEventListener('click', () => {
             const action = item.getAttribute('data-action');
@@ -554,7 +513,6 @@ function initContextMenu() {
         });
     });
 
-    // Hide on click outside
     document.addEventListener('click', hideContextMenu);
 }
 
@@ -567,7 +525,6 @@ function showContextMenu(x, y, type) {
         <div class="context-menu-item" data-action="refresh">Refresh</div>
     `;
 
-    // Re-attach event listeners
     contextMenu.querySelectorAll('.context-menu-item').forEach(item => {
         item.addEventListener('click', () => {
             const action = item.getAttribute('data-action');
@@ -596,9 +553,7 @@ function handleContextAction(action) {
     }
 }
 
-// System Tray
 function initSystemTray() {
-    // Load tray icons
     document.querySelectorAll('.tray-icon[data-icon]').forEach(icon => {
         const iconName = icon.getAttribute('data-icon');
         if (WindowsIcons && WindowsIcons[iconName]) {
@@ -606,7 +561,6 @@ function initSystemTray() {
         }
     });
 
-    // Volume control
     const volumeIcon = document.querySelector('.tray-icon[title="Volume"]');
     if (volumeIcon) {
         volumeIcon.addEventListener('click', () => {
@@ -614,7 +568,6 @@ function initSystemTray() {
         });
     }
 
-    // Network status
     const networkIcon = document.querySelector('.tray-icon[title="Network"]');
     if (networkIcon) {
         networkIcon.addEventListener('click', () => {
@@ -622,7 +575,6 @@ function initSystemTray() {
         });
     }
 
-    // Notifications
     const notifIcon = document.querySelector('.notification-icon');
     if (notifIcon) {
         notifIcon.addEventListener('click', () => {
@@ -630,7 +582,6 @@ function initSystemTray() {
         });
     }
 
-    // Clock click
     const clockEl = document.getElementById('clock');
     if (clockEl) {
         clockEl.addEventListener('click', () => {
@@ -639,7 +590,6 @@ function initSystemTray() {
     }
 }
 
-// Taskbar Previews
 function initTaskbarPreviews() {
     let previewTimeout;
 
@@ -675,7 +625,6 @@ function showTaskbarPreview(taskbarApp, appName) {
     preview.style.left = (rect.left + rect.width / 2 - 140) + 'px';
     preview.classList.remove('hidden');
 
-    // Close button
     const closeBtn = preview.querySelector('.preview-close');
     if (closeBtn) {
         closeBtn.onclick = () => {
@@ -692,7 +641,6 @@ function hideTaskbarPreview() {
     }
 }
 
-// Notifications
 function showWelcomeNotification() {
     setTimeout(() => {
         toggleNotificationPopup();
@@ -708,7 +656,6 @@ function toggleNotificationPopup() {
 
     popup.classList.toggle('hidden');
 
-    // Close button
     const closeBtn = popup.querySelector('.notification-close');
     if (closeBtn) {
         closeBtn.onclick = () => {
@@ -737,7 +684,6 @@ function showSystemToast(title, message) {
     }, 4000);
 }
 
-// Random System Notifications
 function startRandomNotifications() {
     const notifications = [
         { title: '📧 New Message', message: 'You have a new contact form submission!' },
@@ -755,7 +701,6 @@ function startRandomNotifications() {
     }, 45000);
 }
 
-// Window Resizing
 function makeResizable(windowEl) {
     let isResizing = false;
     let currentX, currentY, currentWidth, currentHeight;
@@ -792,12 +737,11 @@ function makeResizable(windowEl) {
 }
 
 
-// Screen Saver
 function initScreenSaver() {
     const screensaver = document.getElementById('screensaver');
     if (!screensaver) return;
 
-    const IDLE_TIME = 60000; // 60 seconds
+    const IDLE_TIME = 60000;
 
     function resetTimer() {
         lastActivity = Date.now();
@@ -810,16 +754,13 @@ function initScreenSaver() {
         screensaver.classList.remove('hidden');
     }
 
-    // Track user activity
     ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart'].forEach(event => {
         document.addEventListener(event, resetTimer, true);
     });
 
-    // Initial timer
     screensaverTimeout = setTimeout(showScreenSaver, IDLE_TIME);
 }
 
-// Theme Switcher
 function initThemeSwitcher() {
     const themeSwitcher = document.getElementById('theme-switcher');
     if (!themeSwitcher) return;
@@ -827,14 +768,12 @@ function initThemeSwitcher() {
     const themeClose = themeSwitcher.querySelector('.theme-close');
     const themeOptions = themeSwitcher.querySelectorAll('.theme-option');
 
-    // Close button
     if (themeClose) {
         themeClose.addEventListener('click', () => {
             themeSwitcher.classList.add('hidden');
         });
     }
 
-    // Theme selection
     themeOptions.forEach(option => {
         option.addEventListener('click', () => {
             const theme = option.getAttribute('data-theme');
@@ -886,7 +825,6 @@ function openControlPanel() {
     }
 }
 
-// Error Dialog
 function initErrorDialog() {
     const errorDialog = document.getElementById('error-dialog');
     if (!errorDialog) return;
@@ -920,7 +858,6 @@ function showErrorDialog(title, message) {
     errorDialog.classList.remove('hidden');
 }
 
-// Desktop Selection Box
 function initDesktopSelection() {
     const desktop = document.getElementById('desktop');
     let isSelecting = false;
@@ -957,7 +894,6 @@ function initDesktopSelection() {
         selectionBox.style.width = width + 'px';
         selectionBox.style.height = height + 'px';
 
-        // Select icons within box
         document.querySelectorAll('.desktop-icon').forEach(icon => {
             const rect = icon.getBoundingClientRect();
             const boxRect = selectionBox.getBoundingClientRect();
@@ -979,10 +915,8 @@ function initDesktopSelection() {
     });
 }
 
-// Keyboard shortcuts
 function initKeyboardShortcuts() {
     document.addEventListener('keydown', (e) => {
-        // Ctrl+A - Select all icons
         if (e.ctrlKey && e.key === 'a') {
             e.preventDefault();
             document.querySelectorAll('.desktop-icon').forEach(icon => {
@@ -990,7 +924,6 @@ function initKeyboardShortcuts() {
             });
         }
 
-        // Escape - Close active window or deselect
         if (e.key === 'Escape') {
             document.querySelectorAll('.desktop-icon').forEach(icon => {
                 icon.classList.remove('selected');
@@ -1002,9 +935,7 @@ function initKeyboardShortcuts() {
     });
 }
 
-// Easter Eggs
 function initEasterEggs() {
-    // Konami Code
     let konamiCode = [];
     const konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
 
@@ -1019,7 +950,6 @@ function initEasterEggs() {
         }
     });
 
-    // Triple-click desktop
     let desktopClickCount = 0;
     let desktopClickTimer;
 
@@ -1039,20 +969,16 @@ function initEasterEggs() {
         }
     });
 
-    // Console messages
     console.log('%c🎨 Portfolio OS v7.0', 'font-size: 20px; font-weight: bold; color: #4A90E2;');
     console.log('%cBuilt with ❤️ using HTML, CSS & JavaScript', 'font-size: 14px; color: #666;');
     console.log('%cTry the Konami Code for a surprise! ⬆️⬆️⬇️⬇️⬅️➡️⬅️➡️BA', 'font-size: 12px; color: #2ECC71;');
 }
 
-// Performance Optimization
 function optimizePerformance() {
-    // Debounce window resize
     let resizeTimeout;
     window.addEventListener('resize', () => {
         clearTimeout(resizeTimeout);
         resizeTimeout = setTimeout(() => {
-            // Adjust window positions if needed
             Object.values(openWindows).forEach(windowEl => {
                 const rect = windowEl.getBoundingClientRect();
                 if (rect.right > window.innerWidth) {
@@ -1066,7 +992,6 @@ function optimizePerformance() {
     });
 }
 
-// Game Logic
 function revealCard(index) {
     const card = document.querySelector(`.game-card[data-index="${index}"]`);
     if (!card) return;
@@ -1074,7 +999,7 @@ function revealCard(index) {
     const front = card.querySelector('.card-front');
     const back = card.querySelector('.card-back');
 
-    if (back.style.display === 'block') return; // Already revealed
+    if (back.style.display === 'block') return;
 
     front.style.display = 'none';
     back.textContent = portfolioFacts[index];
@@ -1092,7 +1017,6 @@ function revealCard(index) {
     }
 }
 
-// Make revealCard globally accessible
 window.revealCard = revealCard;
 window.openControlPanel = openControlPanel;
 window.showErrorDialog = showErrorDialog;
@@ -1102,7 +1026,6 @@ window.closeWindow = closeWindow;
 window.hideContextMenu = hideContextMenu;
 
 
-// Content Creators
 function createPortfolioContent() {
     return `
         <div style="display: flex; flex-direction: column; height: 100%;">
@@ -1484,7 +1407,6 @@ function createCodeEditorContent() {
 }
 
 
-// Windows Explorer Navigation
 let explorerHistory = ['computer'];
 let explorerHistoryIndex = 0;
 
@@ -1745,12 +1667,10 @@ function loadExplorerView(view, addToHistory = true) {
     content.innerHTML = viewData.content;
 }
 
-// Make functions globally accessible
 window.navigateExplorer = navigateExplorer;
 window.loadExplorerView = loadExplorerView;
 
 
-// Code Editor Functions
 const codeFiles = {
     'src/portfolio.js': `// Portfolio Interactive Features
 class Portfolio {
@@ -1925,10 +1845,8 @@ function initCodeEditor() {
 
     if (!textarea || !highlight || !lineNumbers) return;
 
-    // Load initial file
     loadCodeFile('src/portfolio.js');
 
-    // Sync scroll - sync the highlight container, not just the code element
     textarea.addEventListener('scroll', () => {
         if (highlight) {
             highlight.scrollTop = textarea.scrollTop;
@@ -1939,13 +1857,11 @@ function initCodeEditor() {
         }
     });
 
-    // Handle input
     textarea.addEventListener('input', () => {
         updateCodeHighlight();
         updateLineNumbers();
     });
 
-    // Handle tab key
     textarea.addEventListener('keydown', (e) => {
         if (e.key === 'Tab') {
             e.preventDefault();
@@ -1974,7 +1890,6 @@ function loadCodeFile(filename) {
         tab.dataset.file = filename;
     }
 
-    // Update active file in sidebar
     document.querySelectorAll('.file-item').forEach(item => {
         item.classList.toggle('active', item.dataset.file === filename);
     });
@@ -1990,7 +1905,6 @@ function updateCodeHighlight() {
     const code = textarea.value;
     const highlighted = syntaxHighlight(code, currentFile);
     
-    // Wrap each line in a span to preserve width
     const lines = highlighted.split('\n');
     const wrappedLines = lines.map(line => `<span class="code-line">${line || ' '}</span>`).join('\n');
     display.innerHTML = wrappedLines;
@@ -2009,11 +1923,9 @@ function updateLineNumbers() {
 function syntaxHighlight(code, filename) {
     let highlighted = code;
 
-    // Escape HTML
     highlighted = highlighted.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
     if (filename.endsWith('.js')) {
-        // JavaScript syntax highlighting
         highlighted = highlighted
             .replace(/\b(const|let|var|function|class|if|else|for|while|return|new|this|import|export|from|async|await)\b/g, '<span class="keyword">$1</span>')
             .replace(/\b(true|false|null|undefined)\b/g, '<span class="boolean">$1</span>')
@@ -2022,21 +1934,18 @@ function syntaxHighlight(code, filename) {
             .replace(/('([^'\\]|\\.)*'|"([^"\\]|\\.)*")/g, '<span class="string">$1</span>')
             .replace(/\b([A-Z][a-zA-Z0-9]*)\b/g, '<span class="class-name">$1</span>');
     } else if (filename.endsWith('.css')) {
-        // CSS syntax highlighting
         highlighted = highlighted
             .replace(/([.#]?[\w-]+)\s*\{/g, '<span class="selector">$1</span> {')
             .replace(/([\w-]+):/g, '<span class="property">$1</span>:')
             .replace(/:\s*([^;]+);/g, ': <span class="value">$1</span>;')
             .replace(/(\/\*[\s\S]*?\*\/)/g, '<span class="comment">$1</span>');
     } else if (filename.endsWith('.html')) {
-        // HTML syntax highlighting
         highlighted = highlighted
             .replace(/(&lt;\/?)([\w-]+)/g, '$1<span class="tag">$2</span>')
             .replace(/([\w-]+)=/g, '<span class="attribute">$1</span>=')
             .replace(/=("([^"]*)")/g, '=<span class="string">$1</span>')
             .replace(/(&lt;!--[\s\S]*?--&gt;)/g, '<span class="comment">$1</span>');
     } else if (filename.endsWith('.md')) {
-        // Markdown syntax highlighting
         highlighted = highlighted
             .replace(/^(#{1,6})\s+(.*)$/gm, '<span class="keyword">$1</span> <span class="class-name">$2</span>')
             .replace(/\*\*([^*]+)\*\*/g, '<span class="keyword">**</span><span class="class-name">$1</span><span class="keyword">**</span>')
@@ -2048,7 +1957,6 @@ function syntaxHighlight(code, filename) {
 }
 
 
-// Menu Bar System
 function initMenuBar(windowEl, appName) {
     const menuItems = windowEl.querySelectorAll('.menu-item');
     let activeMenu = null;
@@ -2059,7 +1967,6 @@ function initMenuBar(windowEl, appName) {
             const menuName = menuItem.textContent.trim();
             console.log('Menu clicked:', menuName);
 
-            // Close if clicking same menu
             if (activeMenu === menuItem) {
                 closeAllMenus();
                 return;
@@ -2070,12 +1977,10 @@ function initMenuBar(windowEl, appName) {
             activeMenu = menuItem;
         });
         
-        // Add visual feedback
         menuItem.style.cursor = 'pointer';
         menuItem.title = `Click to open ${menuItem.textContent.trim()} menu`;
     });
 
-    // Close menus when clicking outside
     document.addEventListener('click', closeAllMenus);
     windowEl.addEventListener('click', (e) => {
         if (!e.target.closest('.menu-item') && !e.target.closest('.dropdown-menu')) {
@@ -2112,7 +2017,6 @@ function showMenu(menuItem, menuName, appName, windowEl) {
     document.body.appendChild(dropdown);
     menuItem.classList.add('active');
 
-    // Add click handlers
     dropdown.querySelectorAll('.menu-dropdown-item:not([disabled])').forEach((item, index) => {
         const menuData = menus.filter(m => !m.separator)[index];
         if (menuData && menuData.action) {
@@ -2172,7 +2076,6 @@ function getMenuItems(menuName, appName, windowEl) {
     return menus[menuName] || [];
 }
 
-// Menu Actions
 function createNewFile(appName) {
     console.log('Create New File called for:', appName);
     if (appName === 'codeeditor') {
@@ -2190,7 +2093,6 @@ function createNewFile(appName) {
 function openFileFromOS(appName) {
     console.log('Open File from OS called for:', appName);
     
-    // Create a hidden file input
     const fileInput = document.createElement('input');
     fileInput.type = 'file';
     fileInput.accept = '.js,.css,.html,.md,.txt,.json,.xml,.py,.java,.cpp,.c,.h,.php,.rb,.go,.rs,.ts,.jsx,.tsx,.vue,.scss,.sass,.less';
@@ -2205,11 +2107,9 @@ function openFileFromOS(appName) {
                 const filename = file.name;
                 
                 if (appName === 'codeeditor') {
-                    // Add file to code editor
                     codeFiles[filename] = content;
                     loadCodeFile(filename);
                     
-                    // Add to file tree if not exists
                     const fileTree = document.querySelector('.file-tree');
                     if (fileTree && !document.querySelector(`[data-file="${filename}"]`)) {
                         const fileItem = document.createElement('div');
@@ -2237,7 +2137,6 @@ function openFileFromOS(appName) {
 function openFolderFromOS(appName) {
     console.log('Open Folder from OS called for:', appName);
     
-    // Create a hidden folder input
     const folderInput = document.createElement('input');
     folderInput.type = 'file';
     folderInput.webkitdirectory = true;
@@ -2261,7 +2160,6 @@ function openFolderFromOS(appName) {
                     return;
                 }
                 
-                // Collect all valid files
                 const validExtensions = ['.js', '.css', '.html', '.md', '.txt', '.json', '.xml', '.py', '.java', '.cpp', '.c', '.h', '.php', '.rb', '.go', '.rs', '.ts', '.jsx', '.tsx', '.vue', '.scss', '.sass', '.less'];
                 const validFiles = files.filter(file => {
                     const hasValidExt = validExtensions.some(ext => file.name.endsWith(ext));
@@ -2290,10 +2188,8 @@ function openFolderFromOS(appName) {
                         
                         console.log('Loaded file:', relativePath);
                         
-                        // Add to code files
                         codeFiles[relativePath] = content;
                         
-                        // Collect file data
                         fileData.push({
                             path: relativePath,
                             content: content
@@ -2301,7 +2197,6 @@ function openFolderFromOS(appName) {
                         
                         loadedCount++;
                         
-                        // When all files are loaded, build the tree
                         if (loadedCount === validFiles.length) {
                             console.log('All files loaded, building tree...');
                             console.log('File data:', fileData);
@@ -2315,7 +2210,6 @@ function openFolderFromOS(appName) {
                             fileTree.innerHTML = treeHTML;
                             console.log('Tree rendered to DOM');
                             
-                            // Load first file
                             if (fileData.length > 0) {
                                 setTimeout(() => {
                                     loadCodeFile(fileData[0].path);
@@ -2328,7 +2222,6 @@ function openFolderFromOS(appName) {
                     reader.readAsText(file);
                 });
             } else {
-                // For other apps, just open the folder in explorer
                 openApplication('documents');
                 showSystemToast('📁 Opened', `${folderName} folder`);
             }
@@ -2472,70 +2365,58 @@ function showCustomDialog(title, content) {
 }
 
 
-// Keyboard Shortcuts Handler
 document.addEventListener('keydown', (e) => {
-    // Check if code editor is active
     const activeWindow = document.querySelector('.window:not(.minimized)');
     if (!activeWindow) return;
     
     const appName = Object.keys(openWindows).find(key => openWindows[key] === activeWindow);
     if (!appName) return;
 
-    // Ctrl+S - Save
     if (e.ctrlKey && e.key === 's') {
         e.preventDefault();
         saveCurrentFile(appName);
     }
     
-    // Ctrl+N - New File
     if (e.ctrlKey && !e.shiftKey && e.key === 'n') {
         e.preventDefault();
         createNewFile(appName);
     }
     
-    // Ctrl+O - Open File
     if (e.ctrlKey && !e.shiftKey && e.key === 'o') {
         e.preventDefault();
         openFileFromOS(appName);
     }
     
-    // Ctrl+Shift+O - Open Folder
     if (e.ctrlKey && e.shiftKey && e.key === 'O') {
         e.preventDefault();
         openFolderFromOS(appName);
     }
     
-    // Ctrl+W - Close Window
     if (e.ctrlKey && e.key === 'w') {
         e.preventDefault();
         closeWindow(activeWindow, appName);
     }
     
-    // Ctrl+B - Toggle Sidebar
     if (e.ctrlKey && e.key === 'b') {
         e.preventDefault();
         toggleSidebar(appName);
     }
     
-    // Ctrl+F - Find
     if (e.ctrlKey && e.key === 'f') {
         e.preventDefault();
         showSystemToast('🔍 Find', 'Find functionality activated');
     }
     
-    // Ctrl+Plus - Zoom In
     if (e.ctrlKey && (e.key === '+' || e.key === '=')) {
         e.preventDefault();
         adjustZoom(appName, 1);
     }
     
-    // Ctrl+Minus - Zoom Out
     if (e.ctrlKey && e.key === '-') {
         e.preventDefault();
         adjustZoom(appName, -1);
     }
     
-    // Ctrl+0 - Reset Zoom
     if (e.ctrlKey && e.key === '0') {
         e.preventDefault();
         adjustZoom(appName, 0);
@@ -2543,7 +2424,6 @@ document.addEventListener('keydown', (e) => {
 });
 
 
-// Folder Tree Functions
 function toggleFolder(folderHeader) {
     const folderItem = folderHeader.parentElement;
     const arrow = folderHeader.querySelector('.folder-arrow');
@@ -2563,14 +2443,12 @@ function toggleFolder(folderHeader) {
 function buildFolderTree(files) {
     const tree = {};
     
-    // Organize files into folder structure
     files.forEach(file => {
         const parts = file.path.split('/');
         let current = tree;
         
         parts.forEach((part, index) => {
             if (index === parts.length - 1) {
-                // It's a file
                 if (!current._files) current._files = [];
                 current._files.push({
                     name: part,
@@ -2578,7 +2456,6 @@ function buildFolderTree(files) {
                     content: file.content
                 });
             } else {
-                // It's a folder
                 if (!current[part]) {
                     current[part] = {};
                 }
@@ -2593,7 +2470,6 @@ function buildFolderTree(files) {
 function renderFolderTree(tree, parentPath = '') {
     let html = '';
     
-    // Render folders first
     Object.keys(tree).forEach(key => {
         if (key === '_files') return;
         
@@ -2612,7 +2488,6 @@ function renderFolderTree(tree, parentPath = '') {
         `;
     });
     
-    // Render files
     if (tree._files) {
         tree._files.forEach(file => {
             const icon = getFileIcon(file.name);

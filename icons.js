@@ -1,6 +1,4 @@
-// Windows 7 Style SVG Icons
 const WindowsIcons = {
-    // Desktop Icons
     computer: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><rect x="8" y="10" width="32" height="24" fill="#4A90E2" rx="2"/><rect x="10" y="12" width="28" height="20" fill="#87CEEB"/><rect x="18" y="34" width="12" height="2" fill="#666"/><rect x="14" y="36" width="20" height="3" fill="#888" rx="1"/></svg>`,
     
     folder: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><path d="M6 12h16l4 4h16v24H6z" fill="#FDB813"/><path d="M6 16h36v20H6z" fill="#FDCB3D"/><path d="M6 12h16l4 4H6z" fill="#E5A505"/></svg>`,
@@ -9,7 +7,6 @@ const WindowsIcons = {
     
     recycleBin: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><path d="M12 16h24v26H12z" fill="#7C7C7C"/><path d="M10 12h28v4H10z" fill="#999"/><rect x="20" y="8" width="8" height="4" fill="#999"/><line x1="18" y1="20" x2="18" y2="38" stroke="#fff" stroke-width="2"/><line x1="24" y1="20" x2="24" y2="38" stroke="#fff" stroke-width="2"/><line x1="30" y1="20" x2="30" y2="38" stroke="#fff" stroke-width="2"/></svg>`,
     
-    // Application Icons
     notepad: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><rect x="8" y="6" width="32" height="36" fill="#fff" stroke="#999" stroke-width="1"/><rect x="8" y="6" width="32" height="6" fill="#4A90E2"/><line x1="14" y1="18" x2="34" y2="18" stroke="#333" stroke-width="1"/><line x1="14" y1="24" x2="34" y2="24" stroke="#333" stroke-width="1"/><line x1="14" y1="30" x2="28" y2="30" stroke="#333" stroke-width="1"/></svg>`,
     
     browser: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><circle cx="24" cy="24" r="20" fill="#4A90E2"/><path d="M24 4 A20 20 0 0 1 24 44" fill="none" stroke="#fff" stroke-width="2"/><ellipse cx="24" cy="24" rx="8" ry="20" fill="none" stroke="#fff" stroke-width="2"/><line x1="4" y1="24" x2="44" y2="24" stroke="#fff" stroke-width="2"/><line x1="10" y1="14" x2="38" y2="14" stroke="#fff" stroke-width="1.5"/><line x1="10" y1="34" x2="38" y2="34" stroke="#fff" stroke-width="1.5"/></svg>`,
@@ -30,7 +27,6 @@ const WindowsIcons = {
     
     game: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><rect x="8" y="14" width="32" height="20" fill="#4A90E2" rx="4"/><circle cx="16" cy="24" r="4" fill="#FFD700"/><circle cx="32" cy="24" r="4" fill="#E74C3C"/><rect x="12" y="22" width="8" height="2" fill="#fff"/><rect x="14" y="20" width="2" height="8" fill="#fff"/></svg>`,
     
-    // Context Menu Icons
     view: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><circle cx="8" cy="8" r="3" fill="none" stroke="#333" stroke-width="1.5"/><circle cx="8" cy="8" r="1.5" fill="#333"/><path d="M2 8 Q8 2 14 8 Q8 14 2 8" fill="none" stroke="#333" stroke-width="1"/></svg>`,
     
     sort: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><line x1="2" y1="4" x2="14" y2="4" stroke="#333" stroke-width="1.5"/><line x1="2" y1="8" x2="11" y2="8" stroke="#333" stroke-width="1.5"/><line x1="2" y1="12" x2="8" y2="12" stroke="#333" stroke-width="1.5"/></svg>`,
@@ -59,24 +55,20 @@ const WindowsIcons = {
     
     shortcut: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M4 2 L12 2 L12 10 L8 10 L8 14 L4 14 Z" fill="none" stroke="#333" stroke-width="1.5"/><path d="M6 8 L10 8 L8 6 M8 10 L10 8" stroke="#4A90E2" stroke-width="1.5" fill="none"/></svg>`,
     
-    // System Tray Icons
     volume: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M2 6h3l4-3v10l-4-3H2z" fill="#fff"/><path d="M11 4 Q13 8 11 12" fill="none" stroke="#fff" stroke-width="1.5"/><path d="M13 2 Q16 8 13 14" fill="none" stroke="#fff" stroke-width="1.5"/></svg>`,
     
     network: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><rect x="2" y="12" width="2" height="3" fill="#fff"/><rect x="5" y="10" width="2" height="5" fill="#fff"/><rect x="8" y="7" width="2" height="8" fill="#fff"/><rect x="11" y="4" width="2" height="11" fill="#fff"/></svg>`,
     
     notification: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M8 2 L6 5 H3 L3 10 H6 L8 13 L10 10 H13 L13 5 H10 Z" fill="#fff"/><circle cx="12" cy="4" r="3" fill="#E74C3C"/></svg>`,
     
-    // Window Controls
     minimize: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><line x1="4" y1="8" x2="12" y2="8" stroke="currentColor" stroke-width="2"/></svg>`,
     
     maximize: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><rect x="3" y="3" width="10" height="10" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>`,
     
     close: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><line x1="4" y1="4" x2="12" y2="12" stroke="currentColor" stroke-width="2"/><line x1="12" y1="4" x2="4" y2="12" stroke="currentColor" stroke-width="2"/></svg>`,
     
-    // Drive Icons
     hardDrive: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><rect x="8" y="16" width="32" height="20" fill="#4A90E2" rx="2"/><rect x="10" y="18" width="28" height="16" fill="#87CEEB"/><circle cx="36" cy="26" r="2" fill="#2ECC71"/><rect x="12" y="22" width="20" height="2" fill="#fff"/><rect x="12" y="26" width="16" height="2" fill="#fff"/></svg>`,
     
-    // Taskbar Icons
     cascade: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><rect x="2" y="2" width="8" height="6" fill="none" stroke="#333" stroke-width="1"/><rect x="4" y="5" width="8" height="6" fill="none" stroke="#333" stroke-width="1"/><rect x="6" y="8" width="8" height="6" fill="#fff" stroke="#333" stroke-width="1"/></svg>`,
     
     desktop: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><rect x="2" y="3" width="12" height="9" fill="#4A90E2" stroke="#333" stroke-width="1"/><rect x="6" y="12" width="4" height="1" fill="#333"/><rect x="4" y="13" width="8" height="1" fill="#333"/></svg>`,
@@ -85,7 +77,6 @@ const WindowsIcons = {
     
     settings: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><defs><linearGradient id="gearGrad" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:#90A4AE;stop-opacity:1" /><stop offset="100%" style="stop-color:#546E7A;stop-opacity:1" /></linearGradient></defs><path d="M8 1 L9 3 L11 3 L12 5 L14 6 L14 8 L12 9 L11 11 L9 11 L8 13 L7 11 L5 11 L4 9 L2 8 L2 6 L4 5 L5 3 L7 3 Z" fill="url(#gearGrad)" stroke="#37474F" stroke-width="0.8"/><circle cx="8" cy="7" r="3" fill="#CFD8DC" stroke="#37474F" stroke-width="0.8"/><circle cx="8" cy="7" r="1.5" fill="#546E7A"/></svg>`,
     
-    // Additional icons for content
     download: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M8 2 L8 10 M5 7 L8 10 L11 7" stroke="#333" stroke-width="1.5" fill="none"/><rect x="3" y="12" width="10" height="2" fill="#333"/></svg>`,
     
     image: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><rect x="2" y="3" width="12" height="10" fill="#4A90E2" stroke="#333" stroke-width="1"/><circle cx="5" cy="6" r="1.5" fill="#FFD700"/><path d="M2 11 L6 8 L9 10 L14 6 L14 13 L2 13 Z" fill="#2ECC71"/></svg>`,
@@ -122,7 +113,6 @@ const WindowsIcons = {
     
     zip: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><rect x="4" y="2" width="8" height="12" fill="#FFD700" stroke="#333" stroke-width="1"/><rect x="7" y="3" width="2" height="1" fill="#333"/><rect x="7" y="5" width="2" height="1" fill="#333"/><rect x="7" y="7" width="2" height="1" fill="#333"/><rect x="7" y="9" width="2" height="1" fill="#333"/><circle cx="8" cy="12" r="1" fill="#333"/></svg>`,
     
-    // Login screen icons
     user: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><defs><linearGradient id="userGrad" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:#E3F2FD;stop-opacity:1" /><stop offset="100%" style="stop-color:#90CAF9;stop-opacity:1" /></linearGradient></defs><circle cx="24" cy="16" r="8" fill="url(#userGrad)" stroke="#42A5F5" stroke-width="1.5"/><path d="M8 40 Q8 28 24 28 Q40 28 40 40 Z" fill="url(#userGrad)" stroke="#42A5F5" stroke-width="1.5"/></svg>`,
     
     unlock: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><rect x="4" y="7" width="8" height="7" fill="#fff" stroke="#fff" stroke-width="1" rx="1"/><path d="M6 7 L6 5 Q6 3 8 3 Q10 3 10 5" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="8" cy="11" r="1.2" fill="rgba(0,0,0,0.3)"/></svg>`,
@@ -156,13 +146,11 @@ const WindowsIcons = {
     code: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><defs><linearGradient id="codeGrad" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:#42A5F5;stop-opacity:1" /><stop offset="100%" style="stop-color:#1565C0;stop-opacity:1" /></linearGradient></defs><rect x="4" y="8" width="40" height="32" fill="url(#codeGrad)" rx="2" stroke="#0D47A1" stroke-width="1.5"/><rect x="6" y="10" width="36" height="28" fill="#1E1E1E"/><path d="M14 20 L10 24 L14 28" stroke="#4FC3F7" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M22 20 L26 28" stroke="#81C784" stroke-width="2" stroke-linecap="round"/><path d="M30 20 L34 24 L30 28" stroke="#4FC3F7" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
 };
 
-// Helper to get icon HTML with proper sizing
 function getIconHTML(iconName, size = 16) {
     const icon = WindowsIcons[iconName] || WindowsIcons.document;
     return icon.replace('viewBox="0 0 48 48"', `viewBox="0 0 48 48" width="${size}" height="${size}"`).replace('viewBox="0 0 16 16"', `viewBox="0 0 16 16" width="${size}" height="${size}"`);
 }
 
-// Helper function to create icon element
 function createIcon(iconName, size = 16) {
     const svg = WindowsIcons[iconName] || WindowsIcons.document;
     const div = document.createElement('div');
@@ -174,19 +162,16 @@ function createIcon(iconName, size = 16) {
     return svgElement;
 }
 
-// Helper function to get icon as data URL
 function getIconDataURL(iconName) {
     const svg = WindowsIcons[iconName] || WindowsIcons.document;
     return 'data:image/svg+xml;base64,' + btoa(svg);
 }
 
-// Helper to get icon for use in apps object
 function getAppIcon(iconName) {
     const svg = WindowsIcons[iconName] || WindowsIcons.document;
     return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
 }
 
-// Make globally accessible
 window.WindowsIcons = WindowsIcons;
 window.createIcon = createIcon;
 window.getIconDataURL = getIconDataURL;
